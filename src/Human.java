@@ -1,27 +1,32 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Human {
+public class Human implements Serializable {
 
     private String name;
     private String gender;
     private Human father;
     private Human mother;
 
-
     private List<Human> children = new ArrayList<>();
-
 
     public Human(String name, String gender, Human father, Human mother) {
         this.name = name;
         this.gender = gender;
         this.father = father;
         this.mother = mother;
+        father_add();
+        mother_add();
+
+    }
+
+    public void father_add() {
         father.children.add(this);
+    }
+
+    public void mother_add() {
         mother.children.add(this);
-
-
     }
 
     public Human(String name, String gender) {
@@ -29,8 +34,6 @@ public class Human {
         this.gender = gender;
         this.father = null;
         this.mother = null;
-
-
     }
 
     public String getName() {
@@ -57,9 +60,8 @@ public class Human {
         return mother;
     }
 
-
     public String getChildren() {
-        String res ="";
+        String res = "";
         for (Human child : children) {
             res += child + "\n";
         }
@@ -68,27 +70,22 @@ public class Human {
 
     @Override
     public String toString() {
-        return "Имя ='" + name + '\'' +
-                ", Пол ='" + gender + '\'';
+        return "Имя= " + name +
+                ", Пол = " + gender;
     }
 
     public String printParents() {
         if (father == null || mother == null) {
             return "Нет данных о его (ее) родителях";
-
         } else {
-            return
-                    "Его (ее) родители \n" +
-                    "Отец = " + father + "\n"+
-                     "Мать = " + mother;
+            return "его (ее) родители\n" +
+                    "Его (ее) отец = " + father + "," +
+                    "Его (ее) мать = " + mother;
         }
     }
 
-
-    public Human addHomo(Human homo){
-        if (father == null || mother == null) {
-            return homo = new Human(this.name,this.gender);}
-        else return homo = new Human(this.name,this.gender,this.father,this.mother);
+    public List<Human> getChildList() {
+        return children;
     }
 
-    }
+}

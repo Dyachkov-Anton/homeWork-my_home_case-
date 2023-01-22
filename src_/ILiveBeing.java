@@ -1,5 +1,6 @@
-package src_;
+/*package src_;
 
 public interface ILiveBeing<LiveType> {
 
 }
+*/

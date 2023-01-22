@@ -27,18 +27,18 @@ public class FamilyTree<T extends LiveBeing<T>> implements Serializable, IFamily
     public void addLiveBeing(T liveBeing, T father, T mother) {
         if (father != null) {
             liveBeing.setFather(father);
-            father.getChildren().add(liveBeing);
+            father.addChild(liveBeing);
         }
         if (mother != null) {
             liveBeing.setMother(mother);
-            mother.getChildren().add(liveBeing);
+            mother.addChild(liveBeing);
         }
         liveBeings.add(liveBeing);
     }
 
     public T findByName(String name) {
         for (T liveBeing : liveBeings) {
-            if (liveBeing.getName() == name)
+            if (liveBeing.getName().equals(name))
                 return liveBeing;
         }
         return null;
@@ -47,7 +47,7 @@ public class FamilyTree<T extends LiveBeing<T>> implements Serializable, IFamily
     public List<T> findAllByName(String name) {
         List<T> liveBeings = new ArrayList<>();
         for (T liveBeing : this.liveBeings) {
-            if (liveBeing.getName() == name)
+            if (liveBeing.getName().equals(name))
                 liveBeings.add(liveBeing);
         }
         return liveBeings;
@@ -59,12 +59,14 @@ public class FamilyTree<T extends LiveBeing<T>> implements Serializable, IFamily
         }
     }
 
-    public void sortByName() {
+    public List<T> sortByName() {
         Collections.sort(liveBeings);
+        return liveBeings;
     }
 
-    public void sortByDate() {
+    public List<T> sortByDate() {
         Collections.sort(liveBeings, new TComparatorByDate<T>());
+        return liveBeings;
     }
 
     @Override

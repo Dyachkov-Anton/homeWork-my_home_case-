@@ -1,5 +1,6 @@
 package src_;
 
+
 public class LoadFromBin<T extends LiveBeing<T>> implements ICommand {
     private FamilyTreeView<T> familyTreeView;
 

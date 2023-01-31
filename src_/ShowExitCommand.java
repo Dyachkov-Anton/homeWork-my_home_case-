@@ -16,4 +16,5 @@ public class ShowExitCommand<T extends LiveBeing<T>> implements ICommand {
     public String discription() {
         return "Exit";
     }
+
 }

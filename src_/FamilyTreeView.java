@@ -30,17 +30,19 @@ public class FamilyTreeView<T extends LiveBeing<T>> {
         Scanner iScanner = new Scanner(System.in, "Cp866");
         try {
             value = iScanner.nextInt();
+            if (value > 0 && value < commandList.size())
+                return value;
         } catch (Exception e) {
             errorMessage(e);
         }
-        return value;
+        return 0;
     }
 
     public String getName() {
         String line = null;
         Scanner iScanner = new Scanner(System.in, "Cp866");
         try {
-            System.out.println("Введите имя для поиска:");
+            System.out.println("Enter a name to search for:");
             line = iScanner.nextLine();
         } catch (Exception e) {
             errorMessage(e);
@@ -105,13 +107,13 @@ public class FamilyTreeView<T extends LiveBeing<T>> {
     public void showSaveTree(List<T> liveBeings) {
         System.out.println("\n");
         emptyLineBefore();
-        System.out.println("Сохранить:");
+        System.out.println("SAVE LIVEBEING TREE:");
         emptyLineAfter();
     }
 
     public void showLoadTree(List<T> liveBeings) {
         emptyLineBefore();
-        System.out.println("Загрузить:");
+        System.out.println("LOAD LIVEBEING TREE:");
         showAllInConsole(liveBeings);
     }
 
@@ -126,12 +128,12 @@ public class FamilyTreeView<T extends LiveBeing<T>> {
     }
 
     public void exit() {
-        System.out.println("Выходим...");
+        System.out.println("Exit...");
     }
 
     private void errorMessage(Exception e) {
         e.printStackTrace();
         System.out.println(e.getMessage());
-        System.out.println("Повторите ввод!\n");
+        System.out.println("Repeat the input\n");
     }
 }
